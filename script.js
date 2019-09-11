@@ -8,25 +8,42 @@ let colors = [
 ];
 
 let squares = document.querySelectorAll(".square");
-let pickedColor = colors[3];
 let colorDisplay = document.querySelector("#colorDisplay");
+let messageDisplay = document.querySelector("#message");
 
-colorDisplay.textContent = pickedColor;
+let pickColor = () => {
+    let random = Math.floor(Math.random() * colors.length);
+    return colors[random];
+ }
+
+ let changeColors = (color) => {
+    //loop through all squares
+    for(let i = 0; i < squares.length ; i++){
+    //change each color to match given color
+        squares[i].style.backgroundColor = color;
+    }
+}
+
+colorDisplay.textContent = pickColor();
 
 for(let i = 0 ; i < squares.length; i++){
     //add initial colors to squares
     squares[i].style.backgroundColor = colors[i];
 
     //add click listeners to squares
-    squares[i].addEventListener("click", () => {
+    squares[i].addEventListener("click", function(){
         let clickedColor = this.style.backgroundColor;
 
-        if(clickedColor === pickedColor){
-            alert("Correct!");
+        if(clickedColor === pickColor()){
+            messageDisplay.textContent = "Correct!";
+            changeColors(clickedColor);
         }
         else{
-            alert("Wrong!");
+            this.style.backgroundColor = "#232323";
+            messageDisplay.textContent = "Try again";
         }
     });
 }
+
+
 
