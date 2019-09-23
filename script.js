@@ -5,6 +5,12 @@ let colorDisplay = document.getElementById("colorDisplay");
 let messageDisplay = document.querySelector("#message");
 let h1 = document.querySelector("h1");
 let resetButton = document.querySelector("#reset");
+let easyBtn = document.querySelector("#easyBtn");
+let hardBtn = document.querySelector("#hardBtn");
+
+easyBtn.addEventListener("click", ()=> {
+
+});
 
 resetButton.addEventListener("click", () =>{
 	//generate all new colors
@@ -35,7 +41,7 @@ for(var i = 0; i < squares.length; i++){
 		//compare color to pickedColor
 		if(clickedColor === pickedColor) {
 			messageDisplay.textContent = "Correct!";
-			resetButton.textContent = "Play Again?
+			resetButton.textContent = "Play Again?";
 			changeColors(clickedColor);
 			h1.style.background = clickedColor;
 		} else {
