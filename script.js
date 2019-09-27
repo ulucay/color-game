@@ -6,52 +6,43 @@ let colorDisplay = document.getElementById("colorDisplay");
 let messageDisplay = document.querySelector("#message");
 let h1 = document.querySelector("h1");
 let resetButton = document.querySelector("#reset");
-let easyBtn = document.querySelector("#easyBtn");
-let hardBtn = document.querySelector("#hardBtn");
+let modeButtons = document.querySelectorAll(".mode");
 
-easyBtn.addEventListener("click", ()=> {
-	easyBtn.classList.add("selected");
-	hardBtn.classList.remove("selected");
-	numberOfSquares = 3;
-	colors = generateRandomColors(numberOfSquares); 
-	pickedColor = pickColor();
-	colorDisplay.textContent = pickedColor;
-	for(let i = 0 ; i < squares.length; i++){
-		if(colors[i]){
-			squares[i].style.backgroundColor = colors[i];
-		}
-		else{
-			squares[i].style.display = "none";
-		}
-	}
-});
+for(let i = 0 ; i < modeButtons.length; i++){
+	modeButtons[i].addEventListener("click", function() {
+		modeButtons[0].classList.remove("selected");
+		modeButtons[1].classList.remove("selected");
+		this.classList.add("selected");
+		this.textContent === "Easy" ? numberOfSquares = 3: numberOfSquares = 6;
+		reset();
+	});
+}
 
-hardBtn.addEventListener("click", () => {
-	hardBtn.classList.add("selected");
-	easyBtn.classList.remove("selected");
-	numberOfSquares = 6;
-	colors = generateRandomColors(numberOfSquares);
-	pickedColor = pickColor();
-	colorDisplay.textContent = pickedColor;
-	for(let i = 0 ; i < squares.length; i++){
-		squares[i].style.backgroundColor = colors[i];
-		squares[i].style.display = "block";
-	}
-});
-
-resetButton.addEventListener("click", () =>{
-	//generate all new colors
+function reset(){
 	colors = generateRandomColors(numberOfSquares);
 	//pick a new random color from array
 	pickedColor = pickColor();
 	//change colorDisplay to match picked color;
 	colorDisplay.textContent = pickedColor;
+	resetButton.textContent = "New Colors";
+	messageDisplay.textContent = "";
 	//change colors of squares
 	for(var i = 0; i < squares.length; i++){
 		// add initial colors to squares
-		squares[i].style.background = colors[i];
+		if(colors[i]){
+			squares[i].style.display = "block";
+			squares[i].style.background = colors[i];
+		}
+		else{
+			squares[i].style.display = "none";
+		}
 	}
-	h1.style.backgroundColor = "steelblue";
+	h1.style.backgroundColor = "steelblue";	
+}
+
+
+resetButton.addEventListener("click", () =>{
+	reset();
 });
 
 colorDisplay.textContent = pickedColor;
@@ -111,3 +102,5 @@ function randomColor() {
 	let b = Math.floor(Math.random() * 256);
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
+
+//Extreme difficulty will be added
