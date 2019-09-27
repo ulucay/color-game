@@ -13,7 +13,7 @@ easyBtn.addEventListener("click", ()=> {
 	easyBtn.classList.add("selected");
 	hardBtn.classList.remove("selected");
 	numberOfSquares = 3;
-	colors = generateRandomColors(numberOfSquares);
+	colors = generateRandomColors(numberOfSquares); 
 	pickedColor = pickColor();
 	colorDisplay.textContent = pickedColor;
 	for(let i = 0 ; i < squares.length; i++){
@@ -51,8 +51,7 @@ resetButton.addEventListener("click", () =>{
 		// add initial colors to squares
 		squares[i].style.background = colors[i];
 	}
-
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 });
 
 colorDisplay.textContent = pickedColor;
